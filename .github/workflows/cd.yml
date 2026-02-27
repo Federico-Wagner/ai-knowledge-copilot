@@ -57,11 +57,11 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/ai-knowledge-copilot:${{ env.VERSION }}
-            docker stop ai-knowledge-copilot || true
-            docker rm ai-knowledge-copilot || true
-            docker run -d \
+            sudo docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/ai-knowledge-copilot:${{ env.VERSION }}
+            sudo docker stop ai-knowledge-copilot || true
+            sudo docker rm ai-knowledge-copilot || true
+            sudo docker run -d \
               --name ai-knowledge-copilot \
               -p 80:8000 \
               --restart always \
